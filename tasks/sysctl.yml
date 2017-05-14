@@ -1,0 +1,9 @@
+---
+- name: "sweep1: /etc/sysctl.conf"
+  sysctl: name={{item.name}} value={{item.value}} state=present
+  with_items:
+  - { name: security.bsd.hardlink_check_gid, value: 1 }
+  - { name: security.bsd.hardlink_check_uid, value: 1 }
+  - { name: security.bsd.unprivileged_read_msgbuf, value: 0 }
+  - { name: security.bsd.stack_guard_page, value: 1 }
+  - { name: net.inet.ip.random_id, value: 1 }

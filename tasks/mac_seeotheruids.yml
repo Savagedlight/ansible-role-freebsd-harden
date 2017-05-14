@@ -1,0 +1,13 @@
+---
+- name: "mac_seeotheruids: kld"
+  kld: name=mac_seeotheruids
+
+- name: "mac_seeotheruids: sysctl values"
+  sysctl: name={{item.name}} value={{item.value}} state=present
+  with_items:
+  - { name: security.mac.seeotheruids.enabled, value: 1 }
+  - { name: security.mac.seeotheruids.suser_privileged, value: 1 }
+  - { name: security.mac.seeotheruids.specificgid_enabled, value: 1 }
+  - { name: security.mac.seeotheruids.specificgid, value: {{savagedlight_fbsdharden_mac_seeotheruids_gid | mandatory}} }
+  
+  
